@@ -18,46 +18,5 @@ d3.csv('pokemon.csv', type, function(error, data) {
         console.error(error)
         return;
     }
-    var dataset = new Plottable.Dataset(data);
 
-    var xScale = new Plottable.Scales.Linear();
-    var yScale = new Plottable.Scales.Linear();
-
-    var xAxis = new Plottable.Axes.Numeric(xScale, "bottom");
-    var yAxis = new Plottable.Axes.Numeric(yScale, "left");
-
-
-    var plot = new Plottable.Plots.Scatter()
-        .x(function(d) { return d.x; }, xScale)
-        .y(function(d) { return d.y; }, yScale)
-        .addDataset(dataset);
-
-    var gridlines = new Plottable.Components.Gridlines(xScale, yScale);
-    var group = new Plottable.Components.Group([plot, gridlines]);
-
-    var chart = new Plottable.Components.Table([
-        [yAxis, group],
-        [null, xAxis]
-    ]);
-
-    var xInput = document.getElementById('x-input');
-    var yInput = document.getElementById('y-input');
-
-    xInput.addEventListener('change', function(event) {
-        var attribute = event.target.value;
-        dataset.data(dataset.data().map(function(d) {
-            d.x = d[attribute];
-            return d;
-        }));
-    });
-
-    yInput.addEventListener('change', function(event) {
-        var attribute = event.target.value;
-        dataset.data(dataset.data().map(function(d) {
-            d.y = d[attribute];
-            return d;
-        }));
-    });
-
-    chart.renderTo("svg#chart");
 });
