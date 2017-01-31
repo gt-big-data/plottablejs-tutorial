@@ -21,7 +21,7 @@ d3.csv('pokemon.csv', type, function(error, data) {
     }
     var dataset = new Plottable.Dataset(data);
 
-1   var xScale = new Plottable.Scales.Linear();
+   var xScale = new Plottable.Scales.Linear();
     var yScale = new Plottable.Scales.Linear();
 
     var xAxis = new Plottable.Axes.Numeric(xScale, 'bottom');
